@@ -77,5 +77,70 @@ We get a sorted list of nodes
 **Post-Order**
 > 3, 8, 6, 14, 10, 26, 24, 30, 20
 
+### Implementation
+
+First of all we will se how to implement **Depth first** because it's super easy using recursion.
+
+#### Depth first
+
+This method prints the values of the node in a Pre-Order way, as we can se we print the value of the root node and then execute preOrder for left and then right as simple as we saw in the the previous table.
+
+> root -> left -> right
+
+**Pre-order**
+
+```java
+private void preOrder(Node root) {
+    // Base Case
+    if (root == null) return;
+
+    System.out.print(root.value + ", ");
+    preOrder(root.left);
+    preOrder(root.rigth);
+}
+```
+
+Using that same logic, print the value of the root and call `method` for left and right, with changing the order of this three operations we can implement all the methods we want to implement as we can see in the following examples. 
+
+**In-order**
+
+```java
+private void inOrder(Node root) {
+    // Base case
+    if (root == null) return;
+
+    inOrder(root.left);
+    System.out.print(root.value + ", ");
+    inOrder(root.rigth);
+}
+```
+
+**In-order** Reveresed
+
+```java
+private void inOrderReverse(Node root) {
+    // Base case
+    if (root == null) return;
+
+    inOrderReverse(root.rigth);
+    System.out.print(root.value + ", ");
+    inOrderReverse(root.left);
+}
+```
+
+**Post-Order**
+
+```java
+private void postOrder(Node root) {
+    // Base case
+    if (root == null) return;
+
+    postOrder(root.left);
+    postOrder(root.rigth);
+    System.out.print(root.value + ", ");
+}
+```
+
+
 <!-- # More information
 [Big O of Binary tree search](https://persis-randolph.medium.com/big-o-notation-for-binary-search-trees-8f0f50b016ef) -->

@@ -4,15 +4,15 @@ public class Main {
     public static void main(String[] args) {
 
         BinaryTree<Integer> tree = new BinaryTree<>();        
-        tree.add(5);
-        tree.add(2);
-        tree.add(7);
-        System.out.println(tree.find(5));
-        System.out.println(tree.find(3));
-        System.out.println(tree.find(2));
-        System.out.println(tree.find(7));
-        System.out.println(tree.find(-2));
-        System.out.println(tree.find(0));
+        tree.add(20);
+        tree.add(10);
+        tree.add(30);
+        tree.add(6);
+        tree.add(14);
+        tree.add(3);
+        tree.add(8);
+        tree.add(24);
+        tree.add(26);
     }
 
 }

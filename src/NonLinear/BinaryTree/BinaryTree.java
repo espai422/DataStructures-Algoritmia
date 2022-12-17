@@ -65,6 +65,59 @@ public class BinaryTree<T extends Comparable<T>> {
         return find(value, current.left);
     }
 
+    public void TraversePreOrder() {
+        preOrder(root);
+    }
+
+    public void TraverseInOrder() {
+        inOrder(root);
+    }
+
+    public void TraverseInOrderReverse() {
+        inOrderReverse(root);
+    }
+
+    public void TraversePostOrder() {
+        postOrder(root);
+    }
+
+    private void preOrder(Node root) {
+        // Base Case
+        if (root == null) return;
+
+        System.out.print(root.value + ", ");
+        preOrder(root.left);
+        preOrder(root.rigth);
+    }
+
+    private void inOrder(Node root) {
+        // Base case
+        if (root == null) return;
+
+        inOrder(root.left);
+        System.out.print(root.value + ", ");
+        inOrder(root.rigth);
+    }
+
+    private void inOrderReverse(Node root) {
+        // Base case
+        if (root == null) return;
+
+        inOrderReverse(root.rigth);
+        System.out.print(root.value + ", ");
+        inOrderReverse(root.left);
+    }
+
+    private void postOrder(Node root) {
+        // Base case
+        if (root == null) return;
+
+        postOrder(root.left);
+        postOrder(root.rigth);
+        System.out.print(root.value + ", ");
+    }
+
+
     @Override
     public String toString() {
         return "";
