@@ -20,6 +20,7 @@ public class BinaryTree<T extends Comparable<T>> {
             return this.value.compareTo(other.value);
         }
     }
+
     private Node root;
 
     public void add(T value) {
@@ -115,6 +116,35 @@ public class BinaryTree<T extends Comparable<T>> {
         postOrder(root.left);
         postOrder(root.rigth);
         System.out.print(root.value + ", ");
+    }
+    
+    public void reverse() {
+        reverse(root);
+    }
+
+    private void reverse(Node root) {
+        // Base case
+        if (root == null) return;
+
+        reverse(root.left);
+        reverse(root.rigth);
+        swapChilds(root);
+    }
+
+    private void reverseEfficient(Node root) {
+        if (root.left != null)
+            reverse(root.left);
+
+        if (root.rigth != null)
+            reverse(root.rigth);
+
+        swapChilds(root);
+    }
+
+    private void swapChilds(Node node) {
+        Node temp = node.left;
+        node.left = node.rigth;
+        node.rigth = temp;
     }
 
 

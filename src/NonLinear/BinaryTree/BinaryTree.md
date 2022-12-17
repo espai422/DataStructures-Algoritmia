@@ -2,7 +2,26 @@
 The binary tree is a data structure in which a node can have a smaller left child or a larger right child. In case a node has no left or right node, this node is called **Leave Node**.
 
 ![Binary Tree](./images/tree.png)
-## Methods
+
+# Table of Contents
+
+- [Binary Tree](#binary-tree)
+- [Table of Contents](#table-of-contents)
+  - [Basic Methods](#basic-methods)
+    - [Add Method](#add-method)
+    - [Find Method](#find-method)
+  - [Traversal methods](#traversal-methods)
+    - [BREADTH First](#breadth-first)
+    - [Depth first](#depth-first)
+    - [Example](#example)
+      - [Breadth first](#breadth-first-1)
+      - [Depth first](#depth-first-1)
+    - [Implementation](#implementation)
+      - [Depth first](#depth-first-2)
+  - [Exercices](#exercices)
+    - [Reverse Binary Tree](#reverse-binary-tree)
+
+## Basic Methods
 
 Mthods big O notation:
 | Method | Cost   |
@@ -141,6 +160,74 @@ private void postOrder(Node root) {
 }
 ```
 
+## Exercices
+
+### Reverse Binary Tree
+
+To reverse a binary tree we just need to dominate the traversal methods because to reverse a binary tree we need to traverse the tree in a Post-Order way.
+
+The logic to reverse a tree is swap the left child and the right child of each node going from the bottom to top. This is the swap method.
+
+```java
+private void swapChilds(Node node) {
+    Node temp = node.left;
+    node.left = node.rigth;
+    node.rigth = temp;
+}
+```
+
+The reverse method consists on replacing the print operation of the `traversePostOrder` method by `swapChilds(node)`. By doing this first we are calling recursively `reverse(left)` `reverse(right)` util we are reach the leaves nodes. Once in the leaves nodes, the swap method is executed down to up.
+
+```java
+private void reverse(Node root) {
+    // Base case
+    if (root == null) return;
+
+    reverse(root.left);
+    reverse(root.rigth);
+    swapChilds(root);
+}
+```
+
+More eficient method.
+
+```java
+private void reverseEfficient(Node root) {
+    if (root.left != null)
+        reverse(root.left);
+
+    if (root.rigth != null)
+        reverse(root.rigth);
+
+    swapChilds(root);
+}
+```
+
+Finally we neet a base method to call reverse recursively for the first time and pass root as the first argument.
+
+```java
+public void reverse() {
+    reverse(root);
+}
+```
+
+To check the result we can execute traverseInOrder, reverse, and traverseInOrderReverse and the result should be the same.
+
+```java
+private static void reverseTreeTest() {
+    tree.TraverseInOrder();
+    tree.reverse();
+    System.out.println();
+    tree.TraverseInOrderReverse();
+}
+```
+
+Output
+
+```out
+3, 6, 8, 10, 14, 20, 24, 26, 30, 
+3, 6, 8, 10, 14, 20, 24, 26, 30,
+```
 
 <!-- # More information
 [Big O of Binary tree search](https://persis-randolph.medium.com/big-o-notation-for-binary-search-trees-8f0f50b016ef) -->
